@@ -1,0 +1,95 @@
+{
+  "run": [
+    {
+      "method": "shell.run",
+      "params": {
+        "message": "git clone https://github.com/lllyasviel/Fooocus"
+      }
+    }, {
+      "method": "shell.run",
+      "params": {
+        "message": "{{os.platform() === 'win32' ? 'python' : 'python3'}} -m venv env",
+        "path": "Fooocus"
+      }
+    },
+    {
+      "method": "shell.start",
+      "params": {
+        "path": "Fooocus"
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "{{os.platform() === 'win32' ? 'env\\\\Scripts\\\\activate' : 'source env/bin/activate'}} env",
+        "on": [{
+          "event": null,
+          "return": true
+        }]
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "pip install -r {{os.platform() === 'win32' ? '.\\\\requirements_versions.txt' : './requirements_versions.txt'}}",
+        "on": [
+          {
+            "event": null,
+            "return": true
+          }
+        ]
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "npx --yes torchcraft",
+        "on": [
+          {
+            "event": null,
+            "return": true
+          }
+        ]
+      }
+    },
+    {
+      "method": "shell.enter",
+      "params": {
+        "message": "pip install -r torchcraft.txt",
+        "on": [
+          {
+            "event": null,
+            "return": true
+          }
+        ]
+      }
+    },
+    {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0_0.9vae.safetensors",
+        "path": "Fooocus/models/checkpoints/sd_xl_base_1.0_0.9vae.safetensors"
+      }
+    },
+    {
+      "method": "fs.download",
+      "params": {
+        "url": "https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0_0.9vae.safetensors",
+        "path": "Fooocus/models/checkpoints/sd_xl_refiner_1.0_0.9vae.safetensors"
+      }
+    },
+    {
+      "method": "input",
+      "params": {
+        "title": "Install Success",
+        "description": "Go back to the dashboard and launch the app!"
+      }
+    },
+    {
+      "method": "browser.open",
+      "params": {
+        "uri": "/?selected=Fooocus"
+      }
+    }
+  ]
+}
