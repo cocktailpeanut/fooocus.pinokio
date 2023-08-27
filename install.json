@@ -31,7 +31,7 @@
     {
       "method": "shell.enter",
       "params": {
-        "message": "npx --yes torchcraft",
+        "message": "npx --yes torchcraft@0.0.12",
         "on": [
           {
             "event": null,
